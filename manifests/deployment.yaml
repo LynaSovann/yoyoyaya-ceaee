@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yoyoyaya-ceaee-deployment
+  labels:
+    app: yoyoyaya-ceaee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yoyoyaya-ceaee
+  template:
+    metadata:
+      labels:
+        app: yoyoyaya-ceaee
+    spec:
+      containers:
+        - name: yoyoyaya-ceaee-container
+          image: pipejet/yoyoyaya-ceaee:latest
+          ports:
+            - containerPort: 3000
