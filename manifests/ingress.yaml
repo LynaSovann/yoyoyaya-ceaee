@@ -1,0 +1,28 @@
+ apiVersion: networking.k8s.io/v1
+ kind: Ingress
+ metadata:
+   name: yoyoyaya-ceaee-https-ingress
+   namespace: yoyoyaya-ceaee
+   annotations:
+     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+     nginx.ingress.kubernetes.io/use-regex: "true"
+     nginx.ingress.kubernetes.io/proxy-body-size: 8m    
+     nginx.ingress.kubernetes.io/rewrite-target: /
+ spec:
+   ingressClassName: nginx
+   tls:
+     - hosts:
+         - thanak81-yoyoyaya.assessify.org
+       secretName: yoyoyaya-ceaee-secret-tls
+   rules:
+     - host: thanak81-yoyoyaya.assessify.org
+       http:
+         paths:
+           - path: /
+             pathType: Prefix
+             backend:
+               service:
+                 name: yoyoyaya-ceaee-service
+                 port:
+                   number: 8209
+ 
